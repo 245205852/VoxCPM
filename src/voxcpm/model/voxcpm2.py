@@ -57,7 +57,9 @@ from .utils import (
 
 
 # A simple function to trim audio silence using VAD, not used default
-def _trim_audio_silence_vad(audio: torch.Tensor, sample_rate: int, max_silence_ms: float = 200.0, top_db: float = 35.0) -> torch.Tensor:
+def _trim_audio_silence_vad(
+    audio: torch.Tensor, sample_rate: int, max_silence_ms: float = 200.0, top_db: float = 35.0
+) -> torch.Tensor:
     if audio.numel() == 0:
         return audio
     y = audio.squeeze(0).numpy()
@@ -684,7 +686,7 @@ class VoxCPM2Model(nn.Module):
             decode_audio = self.audio_vae.decode(latent_pred.to(torch.float32))
             decode_patch_len = self.patch_size * self._decode_chunk_size
             if context_len > 0:
-                decode_audio = decode_audio[..., decode_patch_len * context_len:].squeeze(1).cpu()
+                decode_audio = decode_audio[..., decode_patch_len * context_len :].squeeze(1).cpu()
             else:
                 decode_audio = decode_audio.squeeze(1).cpu()
             yield decode_audio
@@ -979,7 +981,7 @@ class VoxCPM2Model(nn.Module):
             decode_audio = self.audio_vae.decode(latent_pred.to(torch.float32))
             decode_patch_len = self.patch_size * self._decode_chunk_size
             if context_len > 0:
-                decode_audio = decode_audio[..., decode_patch_len * context_len:].squeeze(1).cpu()
+                decode_audio = decode_audio[..., decode_patch_len * context_len :].squeeze(1).cpu()
             else:
                 decode_audio = decode_audio.squeeze(1).cpu()
             yield (decode_audio, target_text_token, pred_audio_feat)

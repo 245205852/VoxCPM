@@ -455,10 +455,7 @@ def test_clone_rejects_prompt_audio_without_transcript(monkeypatch, tmp_path, ca
     with pytest.raises(SystemExit):
         cli.main()
 
-    assert (
-        "--prompt-audio requires --prompt-text or --prompt-file"
-        in capsys.readouterr().err
-    )
+    assert "--prompt-audio requires --prompt-text or --prompt-file" in capsys.readouterr().err
 
 
 def test_clone_rejects_transcript_without_prompt_audio(monkeypatch, tmp_path, capsys):
@@ -480,9 +477,7 @@ def test_clone_rejects_transcript_without_prompt_audio(monkeypatch, tmp_path, ca
     with pytest.raises(SystemExit):
         cli.main()
 
-    assert (
-        "--prompt-text/--prompt-file requires --prompt-audio" in capsys.readouterr().err
-    )
+    assert "--prompt-text/--prompt-file requires --prompt-audio" in capsys.readouterr().err
 
 
 def test_batch_rejects_control_with_prompt_transcript(monkeypatch, tmp_path, capsys):

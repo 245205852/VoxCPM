@@ -293,7 +293,7 @@ class VoxCPM:
                 retry_badcase_max_times=retry_badcase_max_times,
                 retry_badcase_ratio_threshold=retry_badcase_ratio_threshold,
                 streaming=streaming,
-                seed=seed
+                seed=seed,
             )
 
             if streaming:

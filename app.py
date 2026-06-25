@@ -45,8 +45,8 @@ _EXAMPLES_FOOTER_EN = (
     "**Example 1 — Gentle & Melancholic Girl**  \n"
     '`Control Instruction`: *"A young girl with a soft, sweet voice. '
     'Speaks slowly with a melancholic, slightly tsundere tone."*  \n'
-    '`Target Text`: *"I never asked you to stay… It\'s not like I care or anything. '
-    'But… why does it still hurt so much now that you\'re gone?"*  \n\n'
+    "`Target Text`: *\"I never asked you to stay… It's not like I care or anything. "
+    "But… why does it still hurt so much now that you're gone?\"*  \n\n"
     "**Example 2 — Laid-Back Surfer Dude**  \n"
     '`Control Instruction`: *"Relaxed young male voice, slightly nasal, '
     'lazy drawl, very casual and chill."*  \n'
@@ -147,7 +147,7 @@ _I18N_TRANSLATIONS = {
         "examples_footer": _EXAMPLES_FOOTER_ZH,
     },
     "zh-Hans": None,  # alias, filled below
-    "zh": None,       # alias, filled below
+    "zh": None,  # alias, filled below
 }
 _I18N_TRANSLATIONS["zh-Hans"] = _I18N_TRANSLATIONS["zh-CN"]
 _I18N_TRANSLATIONS["zh"] = _I18N_TRANSLATIONS["zh-CN"]
@@ -160,8 +160,7 @@ for _d in _I18N_TRANSLATIONS.values():
 I18N = gr.I18n(**_I18N_TRANSLATIONS)
 
 DEFAULT_TARGET_TEXT = (
-    "VoxCPM2 is a creative multilingual TTS model from ModelBest, "
-    "designed to generate highly realistic speech."
+    "VoxCPM2 is a creative multilingual TTS model from ModelBest, " "designed to generate highly realistic speech."
 )
 
 _CUSTOM_CSS = """
@@ -224,6 +223,7 @@ _APP_THEME = gr.themes.Soft(
 
 # ---------- Model ----------
 
+
 class VoxCPMDemo:
     def __init__(self, model_id: str = "openbmb/VoxCPM2", device: str = "auto") -> None:
         self.device = resolve_runtime_device(device, "cuda")
@@ -252,9 +252,7 @@ class VoxCPMDemo:
     def get_or_load_asr_model(self) -> AutoModel:
         if self.asr_model is not None:
             return self.asr_model
-        logger.info(
-            f"Loading ASR model: {self.asr_model_id} on device: {self.asr_device}"
-        )
+        logger.info(f"Loading ASR model: {self.asr_model_id} on device: {self.asr_device}")
         self.asr_model = AutoModel(
             model=self.asr_model_id,
             disable_update=True,
@@ -351,6 +349,7 @@ class VoxCPMDemo:
 
 
 # ---------- UI ----------
+
 
 def create_demo_interface(demo: VoxCPMDemo):
     gr.set_static_paths(paths=[Path.cwd().absolute() / "assets"])
@@ -554,6 +553,7 @@ def create_demo_interface(demo: VoxCPMDemo):
 
     return interface
 
+
 def run_demo(
     server_name: str = "0.0.0.0",
     server_port: int = 8808,
@@ -575,9 +575,12 @@ def run_demo(
 
 if __name__ == "__main__":
     import argparse
+
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--model-id", type=str, default="openbmb/VoxCPM2",
+        "--model-id",
+        type=str,
+        default="openbmb/VoxCPM2",
         help="Local path or HuggingFace repo ID (default: openbmb/VoxCPM2)",
     )
     parser.add_argument("--port", type=int, default=8808, help="Server port")
